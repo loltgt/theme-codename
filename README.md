@@ -2,6 +2,8 @@
 
 A child theme for my WordPress starter theme.
 
+It uses [Bootswatch](https://bootswatch.com/) free themes for Bootstrap.
+
 ##### Parent theme here: https://github.com/loltgt/theme
 
 <img src="screenshot.png" alt="Theme codename child theme" width="50%" />
