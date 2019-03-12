@@ -1,0 +1,27 @@
+{
+  "name": "codename",
+  "version": "1.0.0",
+  "description": "My custom child theme assets.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/loltgt/theme-codename.git",
+    "directory": "src"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Leonardo Laureti",
+  "license": "(MIT OR GPL-2.0-or-later)",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.26.3",
+    "gulp": "^4.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "gulp-util": "^3.0.8",
+    "merge-stream": "^1.0.1",
+    "node-sass": "^4.11.0"
+  }
+}
