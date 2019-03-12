@@ -11,7 +11,7 @@ It uses [Bootswatch](https://bootswatch.com/) free themes for Bootstrap.
 
 #### Documentation
 
-Read the documentation here: https://github.com/loltgt/theme/wiki
+Read the documentation here: https://github.com/loltgt/theme/wiki/Classes-theme-Child
 
 
 #### Requirements
