@@ -212,9 +212,9 @@ class Child {
 	/**
 	 * Adds css framework themes selection to existent theme options
 	 *
-	 * @see /theme/Options->settings()
+	 * @see \theme\Options->settings()
 	 *
-	 * @param object $options - /theme/Options
+	 * @param object $options - \theme\Options
 	 * @return void
 	 */
 	public function bst_options( $options ) {
@@ -258,9 +258,9 @@ class Child {
 	/**
 	 * Adds css framework themes selection to existent theme customizer
 	 *
-	 * @see /WP_Customizer_Manager->wp_loaded()
+	 * @see \WP_Customizer_Manager->wp_loaded()
 	 *
-	 * @param object $wp_customize - WP_Customize_Manager
+	 * @param object $wp_customize - \WP_Customize_Manager
 	 * @return void
 	 */
 	public function bst_customizer( $wp_customize ) {
@@ -331,8 +331,6 @@ class Child {
 				'bootswatch_themes',
 				$this->bst
 			);
-		} else {
-			
 		}
 	}
 
