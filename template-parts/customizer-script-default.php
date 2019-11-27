@@ -4,7 +4,7 @@
  *
  * @package theme
  * @subpackage codename
- * @version 1.0
+ * @version 2.0
  */
 
 namespace theme;
@@ -14,16 +14,6 @@ namespace theme;
 
 <script type='text/javascript'>
 jQuery(document).ready(function($) {
-  wp.customize('theme_settings[brand_name]', function(value) {
-    value.bind(function(to) {
-      var logo = $('.custom-logo');
-
-      if (logo.length) {
-        $('.custom-logo').text(to);
-      }
-    });
-  });
-
   wp.customize.selectiveRefresh.bind('partial-content-rendered', function(placement) {
     var selected = wp.customize('theme_settings[bst_selected]')();
     var stylesheet = $('#bootswatch-theme-css').detach();

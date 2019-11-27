@@ -4,7 +4,7 @@
  *
  * @package theme
  * @subpackage codename
- * @version 1.0
+ * @version 2.0
  */
 
 namespace theme;
@@ -35,7 +35,7 @@ class Child {
 
 	// Sets Bootstrap version
 	// @type string BS_VERSION
-	public const BS_VERSION = '4.2.1';
+	public const BS_VERSION = '4.3.1';
 
 	// Sets Bootswatch data transient time expiration
 	// @type string BTS_CACHE_TIMEOUT
@@ -64,11 +64,7 @@ class Child {
 		$this->asset_prefix = $this->theme->Setup->asset_prefix;
 		$this->asset_suffix = $this->theme->Setup->asset_suffix;
 
-		if ( $this->theme->Functions->has_shop( 'WooCommerce' ) )
-			$this->shop_wc_mods();
-
-		// Removes custom logo support
-		remove_theme_support( 'custom-logo' );
+		add_action( 'wp', array($this, 'heading') );
 
 		// Conditional loads Boostrap themes theme support
 		if ( current_theme_supports( 'bootstrap-themes' ) ) {
@@ -83,30 +79,49 @@ class Child {
 
 	}
 
+
 	/**
 	 * Setup the child theme
 	 */
 	public function setup() {
-		// Adds BrowserSync support
-		add_theme_support( 'browsersync' );
+		add_theme_support( 'custom-logo' );
 
 		// Adds Boostrap themes theme support
 		add_theme_support( 'bootstrap-themes' );
 	}
 
+
+	/**
+	 * Heading
+	 */
+	public function heading() {
+		// Meta
+		add_action( 'wp_head', array($this, 'metas'), 0 );
+	}
+
+
+	/**
+	 * Adds essential meta tags in the page head
+	 */
+	public function metas() {
+		echo "<meta charset=\"utf-8\" />\n",
+			 "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\" />\n";
+	}
+
+
 	/**
 	 * Frontend assets queue
 	 */
 	public function assets_queue() {
-		wp_enqueue_style( 'bootstrap-4' );
-		wp_enqueue_style( 'owl-carousel-2' );
-
-		wp_enqueue_script( 'bootstrap-4' );
-		wp_enqueue_script( 'owl-carousel-2' );
-
-		add_action( 'wp_head', array($this->theme->Setup, 'default_inline_stylesheet'), 9999 );
-		add_action( 'wp_footer', array($this->theme->Setup, 'default_inline_script'), 9999 );
+		wp_enqueue_script(
+			'bootstrap-4',
+			'https://stackpath.bootstrapcdn.com/bootstrap/' . self::BS_VERSION . '/js/bootstrap.min.js',
+			array('jquery'),
+			self::BS_VERSION,
+			true
+		);
 	}
+
 
 	/**
 	 * Frontend site logo
@@ -141,13 +156,6 @@ class Child {
 		return $html;
 	}
 
-	/**
-	 * WooCommerce modifications
-	 */
-	public function shop_wc_mods() {
-		remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
-		remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
-	}
 
 	/**
 	 * Gets the list of available css framework themes through the API and caches them
@@ -209,12 +217,13 @@ class Child {
 		return null;
 	}
 
+
 	/**
 	 * Adds css framework themes selection to existent theme options
 	 *
-	 * @see \theme\Options->settings()
+	 * @see /theme/Options->settings()
 	 *
-	 * @param object $options - \theme\Options
+	 * @param object $options - /theme/Options
 	 * @return void
 	 */
 	public function bst_options( $options ) {
@@ -255,12 +264,13 @@ class Child {
 		);
 	}
 
+
 	/**
 	 * Adds css framework themes selection to existent theme customizer
 	 *
-	 * @see \WP_Customizer_Manager->wp_loaded()
+	 * @see /WP_Customizer_Manager->wp_loaded()
 	 *
-	 * @param object $wp_customize - \WP_Customize_Manager
+	 * @param object $wp_customize - WP_Customize_Manager
 	 * @return void
 	 */
 	public function bst_customizer( $wp_customize ) {
@@ -304,6 +314,7 @@ class Child {
 		) );
 	}
 
+
 	/**
 	 * Adds the eventually selected css framework theme to the stylesheet queue
 	 *
@@ -331,8 +342,11 @@ class Child {
 				'bootswatch_themes',
 				$this->bst
 			);
+		} else {
+			
 		}
 	}
+
 
 	/**
 	 * Gets a theme from the list of available css framework themes or the current selected
@@ -354,6 +368,7 @@ class Child {
 
 		return false;
 	}
+
 
 	/**
 	 * (Re-)renderizes the link tag for css framework theme
