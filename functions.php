@@ -35,7 +35,7 @@ class Child {
 
 	// Sets Bootstrap version
 	// @type string BS_VERSION
-	public const BS_VERSION = '4.3.1';
+	public const BS_VERSION = '4.4.1';
 
 	// Sets Bootswatch data transient time expiration
 	// @type string BTS_CACHE_TIMEOUT
